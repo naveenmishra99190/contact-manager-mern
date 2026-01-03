@@ -1,8 +1,3 @@
-Here is a **complete, professional, copy-paste ready `README.md`** for your GitHub repository 👇
-(It is beginner-friendly and looks great to recruiters)
-
----
-
 # 📇 Contact Management Web App (MERN Stack)
 
 A full-stack **Contact Management Web Application** built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js).
