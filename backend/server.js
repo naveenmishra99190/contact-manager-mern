@@ -3,15 +3,21 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 
-// Load environment variables
+// Load environment variables FIRST
 dotenv.config();
+
+// Log to verify environment variables are loaded
+console.log('Environment check:');
+console.log('MONGO_URI exists:', !!process.env.MONGO_URI);
+console.log('PORT:', process.env.PORT || 5000);
+console.log('NODE_ENV:', process.env.NODE_ENV);
 
 // Connect to database
 connectDB();
 
 const app = express();
 
-// CORS Configuration - allows frontend to connect
+// CORS Configuration
 const corsOptions = {
   origin: process.env.FRONTEND_URL || '*',
   credentials: true,
@@ -25,7 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 // Routes
 app.use('/api/contacts', require('./routes/contacts'));
 
-// Health check route - to verify backend is working
+// Health check route
 app.get('/', (req, res) => {
   res.json({ 
     message: 'Contact Manager API is running', 
@@ -34,7 +40,7 @@ app.get('/', (req, res) => {
   });
 });
 
-// Use PORT from environment or default to 5000
+// Use PORT from environment
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
